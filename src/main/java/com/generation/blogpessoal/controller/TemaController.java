@@ -46,12 +46,8 @@ public class TemaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Postagem> postPostagem(@Valid @RequestBody Postagem postagem) {
-		if (temaRepository.existsById(postagem.getTema().getId()))
-			return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(postagem));
-
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
+	public ResponseEntity<Tema> postTema(@Valid @RequestBody Tema tema) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));
 	}
 	/*
 	 * @PostMapping public ResponseEntity<Tema> postTema(@Valid @RequestBody Tema
@@ -60,15 +56,10 @@ public class TemaController {
 	 */
 
 	@PutMapping
-	public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem) {
-
-		if (temaRepository.existsById(postagem.getId())) {
-
-			if (temaRepository.existsById(postagem.getTema().getId()))
-				return ResponseEntity.status(HttpStatus.OK).body(temaRepository.save(postagem));
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	public ResponseEntity<Tema> putTema(@Valid @RequestBody Tema tema) {
+		return temaRepository.findById(tema.getId()).map(resposta -> {
+			return ResponseEntity.ok().body(temaRepository.save(tema));
+		}).orElse(ResponseEntity.notFound().build());
 	}
 	/*
 	 * @PutMapping public ResponseEntity<Tema> putTema(@Valid @RequestBody Tema
