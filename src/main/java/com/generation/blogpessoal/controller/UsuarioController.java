@@ -27,10 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 
-	/**
-	 * Faz uma injeção de dependência da classe de Serviço UsuarioService para ter
-	 * acesso aos métodos do CRUD com regras de negócio
-	 */
 	@Autowired
 	private UsuarioService usuarioService;
 

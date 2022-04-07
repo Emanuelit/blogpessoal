@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.generation.blogpessoal.model.Postagem;
 import com.generation.blogpessoal.model.Tema;
 import com.generation.blogpessoal.repository.TemaRepository;
 
@@ -49,11 +48,6 @@ public class TemaController {
 	public ResponseEntity<Tema> postTema(@Valid @RequestBody Tema tema) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));
 	}
-	/*
-	 * @PostMapping public ResponseEntity<Tema> postTema(@Valid @RequestBody Tema
-	 * tema) { return
-	 * ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema)); }
-	 */
 
 	@PutMapping
 	public ResponseEntity<Tema> putTema(@Valid @RequestBody Tema tema) {
@@ -61,16 +55,6 @@ public class TemaController {
 			return ResponseEntity.ok().body(temaRepository.save(tema));
 		}).orElse(ResponseEntity.notFound().build());
 	}
-	/*
-	 * @PutMapping public ResponseEntity<Tema> putTema(@Valid @RequestBody Tema
-	 * tema) {
-	 * 
-	 * return temaRepository.findById(tema.getId()).map(resposta -> { return
-	 * ResponseEntity.ok().body(temaRepository.save(tema));
-	 * }).orElse(ResponseEntity.notFound().build());
-	 * 
-	 * }
-	 */
 
 	public TemaRepository getTemaRepository() {
 		return temaRepository;
