@@ -21,7 +21,6 @@ public class Postagem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private Long id;
 
 	@NotBlank(message = "O atributo título é Obrigatório: ")
